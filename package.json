@@ -1,0 +1,14 @@
+{
+  "name": "mnyandwa-md-pairing-pro",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Neon cyber-themed WhatsApp pairing UI for a locally controlled Baileys session",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.18",
+    "express": "^4.21.2",
+    "fs-extra": "^11.2.0",
+    "pino": "^9.6.0"
+  }
+}
