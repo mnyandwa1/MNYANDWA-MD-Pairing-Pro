@@ -1,1 +1,146 @@
-
+<!doctype html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050711">
+<title>MNYANDWA-MD | Pairing Pro</title>
+<style>
+:root{--green:#22ff9a;--purple:#c22dff;--cyan:#00eaff;--bg:#050711}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:#edf8ff;font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:-30%;z-index:-3;background:radial-gradient(ellipse at 18% 20%,#00ff7a26,transparent 35%),radial-gradient(ellipse at 80% 25%,#9b00ff2e,transparent 34%),radial-gradient(ellipse at 55% 90%,#00d9ff1d,transparent 40%);animation:aurora 9s ease-in-out infinite alternate}
+body:after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background:repeating-linear-gradient(0deg,#00ff8a08 0px,#00ff8a08 1px,transparent 1px,transparent 4px);opacity:.45}
+@keyframes aurora{to{transform:translate(3%,-2%) rotate(7deg) scale(1.08);filter:hue-rotate(45deg)}}
+.grid{position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(#19ff8c0b 1px,transparent 1px),linear-gradient(90deg,#19ff8c0b 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,transparent,#000 18%,#000 85%,transparent)}
+.wrap{width:min(1120px,94vw);margin:auto;padding:30px 0 22px}
+header{display:flex;align-items:center;gap:16px;padding:10px 4px 26px}
+.logo{width:60px;height:60px;border:1px solid #2affac;border-radius:18px;display:grid;place-items:center;color:var(--green);font-size:30px;text-shadow:0 0 20px var(--green);box-shadow:0 0 25px #00ff8a24,inset 0 0 20px #00ff8a12;animation:pulse 2.5s infinite}
+@keyframes pulse{50%{box-shadow:0 0 36px #00ff8a5c,inset 0 0 24px #00ff8a25}}
+h1{font-size:clamp(27px,5vw,48px);line-height:1;margin:0;font-weight:950;letter-spacing:-1.5px;color:var(--green);text-shadow:0 0 22px #00ff8a65}
+.sub{color:#c2c8e7;letter-spacing:3px;font-size:11px;margin-top:9px}
+.pill{margin-left:auto;border:1px solid #1d775b;border-radius:999px;padding:8px 12px;color:var(--green);font-size:11px;white-space:nowrap}
+.layout{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}
+.panel{position:relative;background:linear-gradient(145deg,#080f19f5,#060814f5);border:1px solid #1d725b;border-radius:22px;padding:clamp(18px,3vw,30px);box-shadow:0 0 28px #00ff8a0d,inset 0 0 35px #00d9ff05;overflow:hidden}
+.panel:before{content:"";position:absolute;left:8%;right:8%;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--green),var(--purple),transparent);animation:beam 4s linear infinite}
+@keyframes beam{0%{transform:translateX(-35%)}100%{transform:translateX(35%)}}
+h2{margin:0 0 7px;font-size:21px;color:var(--green)}
+.muted{color:#a8b6d0;font-size:14px;line-height:1.6}
+label{display:block;color:#cbd7ec;font-size:13px;margin:25px 0 9px}
+input{width:100%;background:#03060d;border:1px solid #25d88c;border-radius:13px;color:white;font-size:19px;padding:16px;outline:none;box-shadow:0 0 18px #00ff8a0b}
+input:focus{box-shadow:0 0 0 3px #00ff8a20,0 0 25px #00ff8a22}
+button{width:100%;border:0;border-radius:13px;margin-top:17px;padding:16px 14px;background:linear-gradient(100deg,#00d878,#37ffad);color:#03130d;font-size:15px;font-weight:900;letter-spacing:.7px;cursor:pointer;box-shadow:0 0 25px #00ff8a39;transition:.2s}
+button:hover{transform:translateY(-2px);box-shadow:0 0 36px #00ff8a66}
+button:disabled{opacity:.55;cursor:wait;transform:none}
+button.secondary{background:#111a2b;border:1px solid #48516c;color:#e9f0ff;box-shadow:none}
+.result{margin-top:22px;padding:18px;border:1px solid #7e25b9;border-radius:17px;background:linear-gradient(135deg,#09091b,#07121a)}
+.result h3{color:#df6aff;margin:0 0 12px;font-size:15px;letter-spacing:1px}
+.code{font-size:clamp(26px,5vw,38px);font-weight:900;letter-spacing:5px;text-align:center;color:#b9ffe0;text-shadow:0 0 18px #00ff9a;margin:15px 0;overflow-wrap:anywhere}
+.session{font-family:ui-monospace,monospace;font-size:11px;line-height:1.6;overflow-wrap:anywhere;max-height:125px;overflow:auto;color:#bdebd9;background:#03070d;padding:10px;border-radius:9px}
+.status{display:flex;align-items:center;gap:9px;margin-top:14px;color:#b4c4d9;font-size:13px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+.steps{display:grid;gap:17px;margin-top:22px}
+.step{display:flex;gap:12px;align-items:flex-start;color:#c4d2e7;font-size:13px;line-height:1.5}
+.num{flex:0 0 29px;height:29px;border-radius:50%;display:grid;place-items:center;background:#063d2b;color:var(--green);border:1px solid #1b8b5e;font-weight:800}
+.warning{margin-top:20px;padding:12px;border-radius:12px;border:1px solid #735d24;color:#e7d8a3;font-size:12px;line-height:1.5;background:#211b0a66}
+footer{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#91a2bd;font-size:12px;padding:20px 5px}
+footer b{color:var(--green)}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.pill{display:none}.wrap{padding-top:18px}.panel{padding:20px}header{padding-bottom:18px}}
+</style>
+</head>
+<body><div class="grid"></div>
+<div class="wrap">
+<header>
+  <div class="logo">✦</div>
+  <div><h1>MNYANDWA-MD</h1><div class="sub">WHATSAPP PAIRING PRO</div></div>
+  <div class="pill">● CYBER UI</div>
+</header>
+<div class="layout">
+<section class="panel">
+  <h2>◉ GENERATE PAIRING CODE</h2>
+  <div class="muted">Ingiza namba yako ya WhatsApp pamoja na country code.</div>
+  <label for="phone">PHONE NUMBER</label>
+  <input id="phone" type="tel" inputmode="numeric" value="255672514834" autocomplete="tel" maxlength="16">
+  <div class="muted" style="margin-top:8px">Mfano wa Tanzania: 255XXXXXXXXX</div>
+  <button id="start">⚡ GENERATE PAIRING CODE</button>
+  <button id="cancel" class="secondary" hidden>Cancel pairing</button>
+  <div class="result">
+    <h3>⌗ YOUR PAIRING CODE</h3>
+    <div id="code" class="code">••••-••••</div>
+    <div id="message" class="muted" style="text-align:center">Pairing code itaonekana hapa.</div>
+    <div class="status"><span class="dot"></span><span id="status">Status: idle</span></div>
+    <div id="sessionWrap" hidden style="margin-top:18px">
+      <h3>SESSION ID — KEEP PRIVATE</h3>
+      <div id="session" class="session"></div>
+      <button id="copy">COPY SESSION ID</button>
+    </div>
+  </div>
+</section>
+<aside class="panel">
+  <h2>◈ SESSION STATUS</h2>
+  <div class="muted">MNYANDWA-MD · Neon cyber interface</div>
+  <div class="steps">
+    <div class="step"><span class="num">1</span><span>Ingiza namba ya WhatsApp yenye country code.</span></div>
+    <div class="step"><span class="num">2</span><span>Bonyeza <b>Generate Pairing Code</b>.</span></div>
+    <div class="step"><span class="num">3</span><span>Fungua WhatsApp → Linked Devices → Link a Device → Link with phone number instead.</span></div>
+    <div class="step"><span class="num">4</span><span>Ingiza pairing code iliyoonyeshwa kwenye ukurasa huu.</span></div>
+    <div class="step"><span class="num">5</span><span>Session itatengenezwa ikiwa muunganisho umekamilika na backend yako inasaidia export hiyo.</span></div>
+  </div>
+  <div class="warning">Usimpe mtu pairing code au Session ID yako. Hizi zinaweza kuruhusu ufikiaji wa akaunti yako.</div>
+</aside>
+</div>
+<footer><span><b>✦ MNYANDWA-MD</b> · Pairing Pro</span><span>NEON • CYBER • ANIMATED</span></footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+let poller = null;
+function render(d) {
+  if (!d) return;
+  $("status").textContent = "Status: " + (d.status || "unknown");
+  if (d.code) $("code").textContent = d.code;
+  if (d.status === "requesting") $("message").textContent = "Inaomba pairing code…";
+  else if (d.status === "ready") $("message").textContent = "Weka code hii kwenye WhatsApp yako.";
+  else if (d.status === "success") $("message").textContent = "Muunganisho umefanikiwa.";
+  else if (d.status === "error") $("message").textContent = d.error || "Pairing imeshindwa.";
+  if (d.sessionId) {
+    $("session").textContent = d.sessionId;
+    $("sessionWrap").hidden = false;
+  }
+  const busy = d.status === "requesting" || d.status === "ready";
+  $("start").disabled = busy;
+  $("cancel").hidden = !busy;
+}
+async function refresh() {
+  try { render(await (await fetch("/api/status")).json()); } catch (_) {}
+}
+$("start").addEventListener("click", async () => {
+  $("start").disabled = true;
+  $("code").textContent = "••••-••••";
+  $("sessionWrap").hidden = true;
+  $("message").textContent = "Inaunganisha…";
+  try {
+    const res = await fetch("/api/pair/start", {
+      method: "POST", headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({phone: $("phone").value})
+    });
+    render(await res.json());
+  } catch (_) { $("message").textContent = "Server haipatikani. Hakikisha Node.js server imewashwa."; }
+  clearInterval(poller);
+  poller = setInterval(refresh, 1500);
+});
+$("cancel").addEventListener("click", async () => {
+  try { render(await (await fetch("/api/pair/cancel", {method:"POST"})).json()); } catch (_) {}
+  clearInterval(poller);
+});
+$("copy").addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText($("session").textContent);
+    $("copy").textContent = "COPIED";
+    setTimeout(() => $("copy").textContent = "COPY SESSION ID", 1600);
+  } catch (_) { alert("Copy haikufanikiwa. Chagua Session ID na u-copy manually."); }
+});
+refresh();
+</script>
+</body>
+</html>
